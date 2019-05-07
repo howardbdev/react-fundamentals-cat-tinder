@@ -1,11 +1,11 @@
 .App {
   text-align: center;
+  display: flex;
+  flex-direction: row;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
+.LikedCats, .DislikedCats, .DisplayCat {
+  flex: 1;
 }
 
 .App-header {
