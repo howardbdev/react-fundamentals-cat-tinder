@@ -4,8 +4,33 @@
   flex-direction: row;
 }
 
-.LikedCats, .DislikedCats, .DisplayCat {
+img {
+  max-height: 60px;
+  max-width: 60px;
+  width: auto;
+  height: auto;
+}
+
+.LikedCats, .DislikedCats, {
   flex: 1;
+}
+
+.DislikedCats {
+  background-color: #f2dadf;
+}
+
+.LikedCats {
+  background-color: #eaffce;
+}
+
+.CenterContainer {
+  flex: 2
+}
+
+.NextUpCats {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 .App-header {

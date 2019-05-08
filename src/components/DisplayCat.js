@@ -10,7 +10,7 @@ function DisplayCat({ cat }) {
 
   return (
     <div style={style} className="DisplayCat">
-      <CatCard cat={cat}/>
+      <CatCard size={{maxHeight: 100, maxWidth: 100}} cat={cat}/>
       <button>Like</button>
       <button>Dislike</button>
     </div>
