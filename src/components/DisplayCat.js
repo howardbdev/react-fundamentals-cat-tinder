@@ -7,8 +7,9 @@ function DisplayCat({
 }) {
   const style = {
     borderStyle: "solid",
-    borderColor: "blue",
-    borderWidth: "1px"
+    borderColor: "teal",
+    borderWidth: "3px",
+    borderRadius: "10px"
   }
 
   return (
