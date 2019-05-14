@@ -1,6 +1,7 @@
 import React from 'react'
 import DisplayCat from './DisplayCat'
 import NextUpCats from './NextUpCats'
+import UploadCatForm from './UploadCatForm'
 
 
 const CenterContainer = (props) => {
@@ -12,6 +13,7 @@ const CenterContainer = (props) => {
         handleLikeClick={props.handleLikeClick}
       />
       <NextUpCats cats={props.cats.slice(1, 4)}/>
+      <UploadCatForm/>
     </div>
   )
 
