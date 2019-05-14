@@ -25,13 +25,33 @@ class App extends Component {
     })
   }
 
+  handleLikeClick = (event) => {
+    let newStatus
+    if (event.target.tagName == "IMG") {newStatus = "undecided"}
+    else {newStatus =  event.target.className === "like-button" ? "liked" : "disliked"}
+    const cats = this.state.cats.map(cat => {
+      if (cat.id == event.target.id || cat.id == event.target.className) {
+        const newCat = Object.assign({}, cat)
+        newCat.status = newStatus
+        return newCat
+      } else {
+        return cat
+      }
+    })
+    this.setState({
+      cats: cats
+    })
+  }
+
   render() {
 
     return (
       <div className="App">
-        <LikedCats cats={cats.slice(0,2)}/>
-        <CenterContainer cats={cats.slice(10,13)}/>
-        <DislikedCats cats={cats.slice(4,8)}/>
+        <DislikedCats handleChangeOfHeart={this.handleLikeClick} cats={this.state.cats.filter(cat => cat.status === "liked")}/>
+        <CenterContainer
+          handleLikeClick={this.handleLikeClick}
+          cats={this.state.cats.filter(cat => cat.status === "undecided")}/>
+        <DislikedCats disliked={true} handleChangeOfHeart={this.handleLikeClick} cats={this.state.cats.filter(cat => cat.status === "disliked")}/>
       </div>
     );
   }
