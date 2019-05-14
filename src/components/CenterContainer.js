@@ -1,5 +1,4 @@
 import React from 'react'
-import Cats from './Cats'
 import DisplayCat from './DisplayCat'
 import NextUpCats from './NextUpCats'
 
