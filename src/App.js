@@ -3,8 +3,6 @@ import './App.css';
 import Cats from './components/Cats'
 import CenterContainer from './components/CenterContainer'
 import DisplayCat from './components/DisplayCat'
-import LikedCats from './components/LikedCats'
-import DislikedCats from './components/DislikedCats'
 
 class App extends Component {
   constructor(){
@@ -42,11 +40,18 @@ class App extends Component {
 
     return (
       <div className="App">
-        <DislikedCats handleChangeOfHeart={this.handleLikeClick} cats={this.state.cats.filter(cat => cat.status === "liked")}/>
+        <Cats
+          handleChangeOfHeart={this.handleLikeClick}
+          cats={this.state.cats.filter(cat => cat.status === "liked")}
+        />
         <CenterContainer
           handleLikeClick={this.handleLikeClick}
           cats={this.state.cats.filter(cat => cat.status === "undecided")}/>
-        <DislikedCats disliked={true} handleChangeOfHeart={this.handleLikeClick} cats={this.state.cats.filter(cat => cat.status === "disliked")}/>
+        <Cats
+          disliked={true}
+          handleChangeOfHeart={this.handleLikeClick}
+          cats={this.state.cats.filter(cat => cat.status === "disliked")}
+        />
       </div>
     );
   }
