@@ -14,7 +14,6 @@ class App extends Component {
     }
   }
 
-  // mocking a fetch request
   componentDidMount() {
     fetch("http://localhost:3001/cats")
       .then(r=>r.json())
