@@ -5,7 +5,6 @@ import CenterContainer from './components/CenterContainer'
 import DisplayCat from './components/DisplayCat'
 import LikedCats from './components/LikedCats'
 import DislikedCats from './components/DislikedCats'
-import cats from './cats-data'
 
 class App extends Component {
   constructor(){
@@ -17,12 +16,9 @@ class App extends Component {
 
   // mocking a fetch request
   componentDidMount() {
-    // fetch("www.mycats.com")
-    //   .then(r=>r.json())
-    //   .then(cats => this.setState({cats: cats}))
-    this.setState({
-      cats: cats
-    })
+    fetch("http://localhost:3001/cats")
+      .then(r=>r.json())
+      .then(cats => this.setState({cats: cats}))
   }
 
   handleLikeClick = (event) => {
