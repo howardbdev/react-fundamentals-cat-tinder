@@ -1,7 +1,6 @@
 import React from 'react'
 import CatCard from './CatCard'
 
-
 const Cats = ({ cats, handleChangeOfHeart, disliked }) => {
   const catCards = cats.map(cat =>
     <CatCard

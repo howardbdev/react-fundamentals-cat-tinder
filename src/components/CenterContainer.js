@@ -9,10 +9,9 @@ const CenterContainer = (props) => {
   return (
     <div className="CenterContainer">
       <DisplayCat
-        cat={props.cats[0]}
         handleLikeClick={props.handleLikeClick}
       />
-      <NextUpCats cats={props.cats.slice(1, 4)}/>
+      <NextUpCats/>
       <UploadCatForm/>
     </div>
   )
