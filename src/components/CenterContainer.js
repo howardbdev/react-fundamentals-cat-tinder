@@ -13,7 +13,7 @@ const CenterContainer = (props) => {
         handleLikeClick={props.handleLikeClick}
       />
       <NextUpCats cats={props.cats.slice(1, 4)}/>
-      <UploadCatForm/>
+      <UploadCatForm addCat={props.addCat}/>
     </div>
   )
 

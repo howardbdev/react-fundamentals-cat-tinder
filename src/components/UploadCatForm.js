@@ -22,26 +22,16 @@ class UploadCatForm extends React.Component {
       })
     }
 
-    handleSubmit = (event) => {
-      event.preventDefault()
-      const headers = {
-        method: "POST",
-        headers: {
-          "Content-Type": 'application/json'
-        },
-        body: JSON.stringify(this.state.formInput)
-      }
 
-      fetch("http://localhost:3001/cats", headers)
-        .then(r => r.json())
-        .then(console.log)
-    }
 
     render() {
       return (
         <div className="UploadCatFormDiv">
         <h4>Upload a Cat</h4>
-          <form className="UploadCatForm" onSubmit={this.handleSubmit}>
+          <form
+            className="UploadCatForm"
+            onSubmit={event=>this.props.addCat(event, this.state.formInput)}
+          >
             <input
               name="name"
               type="text"

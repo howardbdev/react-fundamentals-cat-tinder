@@ -6,7 +6,7 @@ const Cats = ({ cats, handleChangeOfHeart, disliked }) => {
   const catCards = cats.map(cat =>
     <CatCard
       handleChangeOfHeart={handleChangeOfHeart}
-      key={cat.name}
+      key={cat.id}
       cat={cat}
     />)
 

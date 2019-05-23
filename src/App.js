@@ -25,6 +25,7 @@ class App extends Component {
       if (parseInt(cat.id) === parseInt(event.target.id) || cat.id == event.target.className) {
         const newCat = Object.assign({}, cat)
         newCat.status = newStatus
+        this.updateCat(newCat)
         return newCat
       } else {
         return cat
@@ -33,6 +34,37 @@ class App extends Component {
     this.setState({
       cats: cats
     })
+  }
+
+  updateCat = (cat) => {
+    const headers = {
+      method: "PATCH",
+      headers: {
+        "Content-Type": 'application/json'
+      },
+      body: JSON.stringify({ cat })
+    }
+
+    fetch(`http://localhost:3001/cats/${cat.id}`, headers)
+      .then(r => r.json())
+      .then(console.log)
+  }
+
+  handleSubmit = (event, formData) => {
+    event.preventDefault()
+    const headers = {
+      method: "POST",
+      headers: {
+        "Content-Type": 'application/json'
+      },
+      body: JSON.stringify(formData)
+    }
+
+    fetch("http://localhost:3001/cats", headers)
+      .then(r => r.json())
+      .then(cat => this.setState({
+        cats: [...this.state.cats, cat]
+      }))
   }
 
   render() {
@@ -45,7 +77,9 @@ class App extends Component {
         />
         <CenterContainer
           handleLikeClick={this.handleLikeClick}
-          cats={this.state.cats.filter(cat => cat.status === "undecided")}/>
+          cats={this.state.cats.filter(cat => cat.status === "undecided")}
+          addCat={this.handleSubmit}
+        />
         <Cats
           disliked={true}
           handleChangeOfHeart={this.handleLikeClick}
