@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Cats from './components/Cats'
 import CenterContainer from './components/CenterContainer'
+import { connect } from 'react-redux'
 
 class App extends Component {
   constructor(){
@@ -21,7 +22,7 @@ class App extends Component {
     let newStatus
     if (event.target.tagName === "IMG") {newStatus = "undecided"}
     else {newStatus =  event.target.className === "like-button" ? "liked" : "disliked"}
-    const cats = this.state.cats.map(cat => {
+    const cats = this.props.cats.map(cat => {
       if (parseInt(cat.id) === parseInt(event.target.id) || cat.id == event.target.className) {
         const newCat = Object.assign({}, cat)
         newCat.status = newStatus
@@ -41,19 +42,24 @@ class App extends Component {
       <div className="App">
         <Cats
           handleChangeOfHeart={this.handleLikeClick}
-          cats={this.state.cats.filter(cat => cat.status === "liked")}
+          cats={this.props.cats.filter(cat => cat.status === "liked")}
         />
         <CenterContainer
           handleLikeClick={this.handleLikeClick}
-          cats={this.state.cats.filter(cat => cat.status === "undecided")}/>
+          cats={this.props.cats.filter(cat => cat.status === "undecided")}/>
         <Cats
           disliked={true}
           handleChangeOfHeart={this.handleLikeClick}
-          cats={this.state.cats.filter(cat => cat.status === "disliked")}
+          cats={this.props.cats.filter(cat => cat.status === "disliked")}
         />
       </div>
     );
   }
 }
 
-export default App;
+const mapStateToProps = state => {
+  return {
+    cats: state.cats
+  }
+}
+export default connect(mapStateToProps)(App);
