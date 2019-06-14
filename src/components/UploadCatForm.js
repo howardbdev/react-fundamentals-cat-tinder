@@ -1,4 +1,6 @@
 import React from 'react'
+import { uploadCat } from '../actions/cats.js'
+import { connect } from 'react-redux'
 
 class UploadCatForm extends React.Component {
     constructor(){
@@ -24,17 +26,15 @@ class UploadCatForm extends React.Component {
 
     handleSubmit = (event) => {
       event.preventDefault()
-      const headers = {
-        method: "POST",
-        headers: {
-          "Content-Type": 'application/json'
-        },
-        body: JSON.stringify(this.state.formInput)
-      }
-
-      fetch("http://localhost:3001/cats", headers)
-        .then(r => r.json())
-        .then(console.log)
+      this.props.uploadCat(this.state.formInput).then(()=>{this.setState(
+        {
+          formInput: {
+            name: "",
+            image_url: "",
+            status: "undecided",
+          }
+        }
+      )})
     }
 
     render() {
@@ -68,4 +68,4 @@ class UploadCatForm extends React.Component {
     }
 }
 
-export default UploadCatForm
+export default connect(null, { uploadCat })(UploadCatForm)

@@ -3,19 +3,15 @@ import './App.css';
 import Cats from './components/Cats'
 import CenterContainer from './components/CenterContainer'
 import { connect } from 'react-redux'
+import { getCats } from './actions/cats.js'
 
 class App extends Component {
   constructor(){
     super()
-    this.state = {
-      cats: []
-    }
   }
 
   componentDidMount() {
-    fetch("http://localhost:3001/cats")
-      .then(r=>r.json())
-      .then(cats => this.setState({cats: cats}))
+    this.props.getCats()
   }
 
   handleLikeClick = (event) => {
@@ -62,4 +58,11 @@ const mapStateToProps = state => {
     cats: state.cats
   }
 }
-export default connect(mapStateToProps)(App);
+
+// const mapDispatchToProps = dispatch => {
+//   return {
+//     getCats: () => dispatch(getCats())
+//   }
+// }
+
+export default connect(mapStateToProps, { getCats })(App);

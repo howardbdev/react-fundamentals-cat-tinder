@@ -11,6 +11,7 @@ import {
 } from 'redux'
 import { Provider } from 'react-redux'
 import thunk from 'redux-thunk'
+import catsReducer from './reducers/cats.js'
 
 // I will import what I need to build a store from redux and react-redux
 // I will build the store
@@ -18,27 +19,24 @@ import thunk from 'redux-thunk'
   // ....?
 // I will wrap App in Provider, passing store as a prop to provider
 
-// build my reducer ------------------
-const catsReducer = (state=[], action) => {
-  switch (action.type) {
-    default:
-      return state
-  }
-}
+// ---- COMBINE REDUCERS vv ------------------
 const reducers = combineReducers({
   cats: catsReducer
 })
-// ----------------------------------------
+// -------------COMBINE REDUCERS^^-------------
 
-// build my middleware ----------------------------
+
+// --------MIDDLEWARE ----------------------------
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-//----------------------------------------------------
+//---------------MIDDLEWARE-----------------------
 
 
-// build my store -----------------------------------
+// ------------BUILD MY STORE -----------------------------------
 const store = createStore(reducers, composeEnhancer(applyMiddleware(thunk)))
-//----------------------------------------------------
+//------STORE-------------------------------
 
+
+// Wrap App in Provider, and pass store as a prop to Provider
 ReactDOM.render(<Provider store={store}>
                   <App />
                 </Provider>, document.getElementById('root'));
